@@ -10,7 +10,7 @@
 ############################
 
 # Name of website
-title: HeNeos\' blog
+title: HeNeos' blog
 
 # Your name to show in the footer
 author: Josue Huaroto
@@ -22,9 +22,10 @@ author: Josue Huaroto
 navbar-links:
   About Me: "aboutme"
   Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://heneos.github.io/"
+    - Codeforces: "https://codeforces.com/profile/HeNeos"
+    - Old Codeforces: "https://codeforces.com/profile/Ptolemy_314"
+    - My own implementation for algorithms: "https://github.com/HeNeos/A-Competitive-Programming-Guide"
+  Blog's home: "https://heneos.github.io/"
 
 ################
 # --- Logo --- #
@@ -94,7 +95,7 @@ share-links-active:
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"
+url-pretty: "HeNeos"
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
 excerpt_length: 50
