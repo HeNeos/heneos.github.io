@@ -32,12 +32,12 @@ By Mobius Function:
 Let $i=ak$ and $j=bk$:
 
 \begin{aligned}
-G &= \sum_{i=1}^{N}\sum_{j=i+1}^{N} \gcd(i, j) = \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \Big\vert 1 = \gcd(a,b) \Big\vert\cr
-&= \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \sum_{d=1}^{N} \mu(d) \Big\vert d \vert \gcd(a,b) \Big\vert\\
+G &= \sum_{i=1}^{N}\sum_{j=i+1}^{N} \gcd(i, j)\cr
+&= \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \Big\vert 1 = \gcd(a,b) \Big\vert\cr
+&= \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \sum_{d=1}^{N} \mu(d) \Big\vert d \vert \gcd(a,b) \Big\vert\cr
 &= \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \sum_{d=1}^{N} \mu(d) \Big\vert d \vert a \Big\vert \Big\vert d \vert b \Big\vert\cr
 &= \sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \sum_{a=1}^{\lfloor N/k \rfloor} \Big\vert d \vert a \Big\vert \bigg( \Big\lfloor\frac{\lfloor N/k \rfloor}{d}\Big\rfloor - \Big\lfloor\frac{a}{d}\Big\rfloor \bigg)\cr
 &= \sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \bigg( \Big \lfloor \frac{\lfloor N/k\rfloor}{d}\Big\rfloor^2 - \sum_{m=1}^{\lfloor \lfloor N/k\rfloor/d\rfloor} \frac{dm}{d} \bigg)\cr
-&= \sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \bigg( \Big \lfloor \frac{\lfloor N/k\rfloor}{d}\Big\rfloor^2 - \frac{\big \lfloor \frac{\lfloor N/k\rfloor}{d}\big\rfloor(\big\lfloor \frac{\lfloor N/k \rfloor}{d}\big\rfloor + 1)}{2} \bigg)\cr
 &= \sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \bigg( \Big \lfloor \frac{\lfloor N/k\rfloor}{d}\Big\rfloor^2 - \frac{\big \lfloor \frac{\lfloor N/k\rfloor}{d}\big\rfloor(\big\lfloor \frac{\lfloor N/k \rfloor}{d}\big\rfloor + 1)}{2} \bigg)
 \end{aligned}
 
@@ -48,27 +48,27 @@ Time Complexity: $O(Q n \log (n))$
 
 Define a list $S$ of possible values of $\lfloor N/k \rfloor$:
 
-$$
-S = \Big\{ 1, 2, 3, \ldots, \sqrt{N}, \frac{N}{\sqrt{N} - 1}, \ldots, \frac{N}{1} \Big\}
-$$
+\begin{aligned}
+S &= \Big\{ 1, 2, 3, \ldots, \sqrt{N}, \frac{N}{\sqrt{N} - 1}, \ldots, \frac{N}{1} \Big\}
+\end{aligned}
 
 and define a list of intervals $V$ from $1$ to $N$ for each possible value from $S[i]$:
 
-$$
-V = \Big\{ [N, N/2 + 1], [N/2, N/3+1], \ldots, \big[ \frac{N}{\sqrt{N}}, \frac{N}{\sqrt{N}-1} + 1 \big], [\sqrt{N}-1, \sqrt{N-1}], \ldots, [1, 1] \Big\}
-$$
+\begin{aligned}
+V &= \Big\{ [N, N/2 + 1], [N/2, N/3+1], \ldots, \big[ \frac{N}{\sqrt{N}}, \frac{N}{\sqrt{N}-1} + 1 \big], [\sqrt{N}-1, \sqrt{N-1}], \ldots, [1, 1] \Big\}
+\end{aligned}
 
-$$
-\forall x \in V[i] : S[i] = N/x
-$$
+\begin{aligned}
+\forall &x \in V[i] : S[i] = N/x
+\end{aligned}
 
 ### Optimization 2
 
 Create an array with accumulate sum of mobius function:
 
-$$
-M[i] = M[i-1] + \mu(i)
-$$
+\begin{aligned}
+M[i] &= M[i-1] + \mu(i)
+\end{aligned}
 
 Now, it’s possible to iterate over possibles values of $\lfloor N/k\rfloor /d$, similar to *Optimization 1*, create all posibles values of $\lfloor S[i]/d\rfloor$ and iterate over there and multiply with accumulate sum of mobius.
 
@@ -153,35 +153,23 @@ int main(){
 
 Define a dynamic programming array with this concept:
 
-$$
-DP[n] = \sum_{i=1}^{n}\sum_{j=i+1}^{n} \gcd(i, j) = DP[n-1] + \sum_{i=1}^{n} \gcd(i, n) - n
-$$
+\begin{aligned}
+DP[n] &= \sum_{i=1}^{n}\sum_{j=i+1}^{n} \gcd(i, j) = DP[n-1] + \sum_{i=1}^{n} \gcd(i, n) - n
+\end{aligned}
 
 Let $i = ak$ and $n+1 = bk$:
 
-$$
-\sum_{i=1}^{n+1} \gcd(i, n+1) = \sum_{k=1}^{n+1}k \sum_{a=1}^{(n+1)/k} \Big\vert 1 = \gcd(a,b) \Big\vert
-$$
+\begin{aligned}
+\sum_{i=1}^{n+1} \gcd(i, n+1) &= \sum_{k=1}^{n+1}k \sum_{a=1}^{(n+1)/k} \Big\vert 1 = \gcd(a,b) \Big\vert\cr
+&= \sum_{k=1}^{n+1}k \sum_{a=1}^{(n+1)/k} \sum_{d=1}^{(n+1)/k} \mu(d) \Big\vert d\vert a \Big\vert \Big\vert d\vert b \Big\vert\cr
+&= \sum_{k=1}^{n+1} k \Big\vert k\vert (n+1) \Big\vert \sum_{d=1}^{(n+1)/k} \mu(d) \Big\vert d\vert (n+1)/k \Big\vert \frac{(n+1)/k}{d}\cr
+&= \sum_{k=1}^{n+1} k\Big\vert k\vert (n+1) \Big\vert \sum_{d\vert (n+1)/k} \mu(d) \frac{(n+1)/k}{d}\cr
+&= \sum_{k\vert (n+1)} k \phi\Big(\frac{n+1}{k}\Big)
+\end{aligned}
 
-$$
-\sum_{i=1}^{n+1} \gcd(i, n+1) = \sum_{k=1}^{n+1}k \sum_{a=1}^{(n+1)/k} \sum_{d=1}^{(n+1)/k} \mu(d) \Big\vert d\vert a \Big\vert \Big\vert d\vert b \Big\vert
-$$
-
-$$
-\sum_{i=1}^{n+1} \gcd(i, n+1) = \sum_{k=1}^{n+1} k \Big\vert k\vert (n+1) \Big\vert \sum_{d=1}^{(n+1)/k} \mu(d) \Big\vert d\vert (n+1)/k \Big\vert \frac{(n+1)/k}{d}
-$$
-
-$$
-\sum_{i=1}^{n+1} \gcd(i, n+1) = \sum_{k=1}^{n+1} k\Big\vert k\vert (n+1) \Big\vert \sum_{d\vert (n+1)/k} \mu(d) \frac{(n+1)/k}{d}
-$$
-
-$$
-\sum_{i=1}^{n+1} \gcd(i, n+1) = \sum_{k\vert (n+1)} k \phi\Big(\frac{n+1}{k}\Big)
-$$
-
-$$
-DP[n] = DP[n-1] + \sum_{k\vert n} k \phi(n/k) - n
-$$
+\begin{aligned}
+DP[n] &= DP[n-1] + \sum_{k\vert n} k \phi(n/k) - n
+\end{aligned}
 
 Time Complexity: $O(n^{4/3} + Q)$
 
