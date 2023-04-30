@@ -57,6 +57,8 @@ F = q(u)*dot(grad(u), grad(v))*dx - f*v*dx
 solve(F == 0, u, bc)
 ```
 
+![u](https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/tutorial/poisson/u-1.jpg){: .mx-auto.d-block :}
+
 ## Membrane Poisson Equation
 
 We want to compute the deflection $D(x,y)$ of a two-dimensional, circular membrane of radius $R$, subject to a load $p$ over the membrane. The appropriate PDE model is:
@@ -124,3 +126,6 @@ L = p*v*dx
 w = Function(V)
 solve(a == L, w, bc)
 ```
+
+![deflection](https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/tutorial/poisson/deflection.jpg){: .mx-auto.d-block :}
+![load](https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/tutorial/poisson/load.jpg){: .mx-auto.d-block :}
