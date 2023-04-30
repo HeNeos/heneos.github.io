@@ -32,22 +32,15 @@ By Mobius Function:
 Let $i=ak$ and $j=bk$:
 
 \begin{aligned}
-G &= \sum_{i=1}^{N}\sum_{j=i+1}^{N} \gcd(i, j) = \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \Big\vert 1 = \gcd(a,b) \Big\vert\\
+G &= \sum_{i=1}^{N}\sum_{j=i+1}^{N} \gcd(i, j) = \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \Big\vert 1 = \gcd(a,b) \Big\vert\cr
 &= \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \sum_{d=1}^{N} \mu(d) \Big\vert d \vert \gcd(a,b) \Big\vert\\
-&= \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \sum_{d=1}^{N} \mu(d) \Big\vert d \vert a \Big\vert \Big\vert d \vert b \Big\vert
+&= \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \sum_{d=1}^{N} \mu(d) \Big\vert d \vert a \Big\vert \Big\vert d \vert b \Big\vert\cr
+&= \sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \sum_{a=1}^{\lfloor N/k \rfloor} \Big\vert d \vert a \Big\vert \bigg( \Big\lfloor\frac{\lfloor N/k \rfloor}{d}\Big\rfloor - \Big\lfloor\frac{a}{d}\Big\rfloor \bigg)\cr
+&= \sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \bigg( \Big \lfloor \frac{\lfloor N/k\rfloor}{d}\Big\rfloor^2 - \sum_{m=1}^{\lfloor \lfloor N/k\rfloor/d\rfloor} \frac{dm}{d} \bigg)\cr
+&= \sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \bigg( \Big \lfloor \frac{\lfloor N/k\rfloor}{d}\Big\rfloor^2 - \frac{\big \lfloor \frac{\lfloor N/k\rfloor}{d}\big\rfloor(\big\lfloor \frac{\lfloor N/k \rfloor}{d}\big\rfloor + 1)}{2} \bigg)\cr
+&= \sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \bigg( \Big \lfloor \frac{\lfloor N/k\rfloor}{d}\Big\rfloor^2 - \frac{\big \lfloor \frac{\lfloor N/k\rfloor}{d}\big\rfloor(\big\lfloor \frac{\lfloor N/k \rfloor}{d}\big\rfloor + 1)}{2} \bigg)
 \end{aligned}
 
-$$
-\sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \sum_{a=1}^{\lfloor N/k \rfloor} \Big\vert d \vert a \Big\vert \bigg( \Big\lfloor\frac{\lfloor N/k \rfloor}{d}\Big\rfloor - \Big\lfloor\frac{a}{d}\Big\rfloor \bigg)
-$$
-
-$$
-\sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \bigg( \Big \lfloor \frac{\lfloor N/k\rfloor}{d}\Big\rfloor^2 - \sum_{m=1}^{\lfloor \lfloor N/k\rfloor/d\rfloor} \frac{dm}{d} \bigg) = \sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \bigg( \Big \lfloor \frac{\lfloor N/k\rfloor}{d}\Big\rfloor^2 - \frac{\big \lfloor \frac{\lfloor N/k\rfloor}{d}\big\rfloor(\big\lfloor \frac{\lfloor N/k \rfloor}{d}\big\rfloor + 1)}{2} \bigg)
-$$
-
-$$
-\sum_{i=1}^{N} \sum_{j=i+1}^{N} \gcd(i, j) = \sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \bigg( \Big \lfloor \frac{\lfloor N/k\rfloor}{d}\Big\rfloor^2 - \frac{\big \lfloor \frac{\lfloor N/k\rfloor}{d}\big\rfloor(\big\lfloor \frac{\lfloor N/k \rfloor}{d}\big\rfloor + 1)}{2} \bigg)
-$$
 
 Time Complexity: $O(Q n \log (n))$
 
