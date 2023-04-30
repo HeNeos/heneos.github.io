@@ -49,13 +49,13 @@ Time Complexity: $O(Q n \log (n))$
 Define a list $S$ of possible values of $\lfloor N/k \rfloor$:
 
 \begin{aligned}
-S &= \Big\{ 1, 2, 3, \ldots, \sqrt{N}, \frac{N}{\sqrt{N} - 1}, \ldots, \frac{N}{1} \Big\}
+  S &= \Big\lbrace 1, 2, 3, \ldots, \sqrt{N}, \frac{N}{\sqrt{N} - 1}, \ldots, \frac{N}{1} \Big\rbrace}
 \end{aligned}
 
 and define a list of intervals $V$ from $1$ to $N$ for each possible value from $S[i]$:
 
 \begin{aligned}
-V &= \Big\{ [N, N/2 + 1], [N/2, N/3+1], \ldots, \big[ \frac{N}{\sqrt{N}}, \frac{N}{\sqrt{N}-1} + 1 \big], [\sqrt{N}-1, \sqrt{N-1}], \ldots, [1, 1] \Big\}
+  V &= \Big\{ [N, N/2 + 1], [N/2, N/3+1], \ldots, \big[ \frac{N}{\sqrt{N}}, \frac{N}{\sqrt{N}-1} + 1 \big], [\sqrt{N}-1, \sqrt{N-1}], \ldots, [1, 1] \Big\}
 \end{aligned}
 
 \begin{aligned}
