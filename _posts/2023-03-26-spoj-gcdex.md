@@ -25,17 +25,17 @@ Here `gcd()` is a function that finds the greatest common divisor of the two inp
 
 By Mobius Function:
 
-$$
-\sum_{i=1}^{N} \sum_{j=i+1}^{N} \gcd(i, j)
-$$
+\begin{aligned}
+  G &= \sum_{i=1}^{N} \sum_{j=i+1}^{N} \gcd(i, j)
+\end{aligned}
 
-$$
-i = ak,\; j = bk \longrightarrow \sum_{i=1}^{N}\sum_{j=i+1}^{N} = \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \Big\vert 1 = \gcd(a,b) \Big\vert
-$$
+Let $i=ak$ and $j=bk$:
 
-$$
-\sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \sum_{d=1}^{N} \mu(d) \Big\vert d \vert \gcd(a,b) \Big\vert = \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \sum_{d=1}^{N} \mu(d) \Big\vert d \vert a \Big\vert \Big\vert d \vert b \Big\vert
-$$
+\begin{aligned}
+G &= \sum_{i=1}^{N}\sum_{j=i+1}^{N} \gcd(i, j) = \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \Big\vert 1 = \gcd(a,b) \Big\vert\\
+&= \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \sum_{d=1}^{N} \mu(d) \Big\vert d \vert \gcd(a,b) \Big\vert\\
+&= \sum_{k=1}^{N}\sum_{a=1}^{\lfloor N/k \rfloor}\sum_{b=a+1}^{\lfloor N/k \rfloor} k \sum_{d=1}^{N} \mu(d) \Big\vert d \vert a \Big\vert \Big\vert d \vert b \Big\vert
+\end{aligned}
 
 $$
 \sum_{k=1}^{N} k \sum_{d=1}^{\lfloor N/k \rfloor} \mu(d) \sum_{a=1}^{\lfloor N/k \rfloor} \Big\vert d \vert a \Big\vert \bigg( \Big\lfloor\frac{\lfloor N/k \rfloor}{d}\Big\rfloor - \Big\lfloor\frac{a}{d}\Big\rfloor \bigg)
