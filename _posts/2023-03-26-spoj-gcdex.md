@@ -1,12 +1,14 @@
 ---
 layout: post
 title: SPOJ | GCDEX
-subtitle: [GCD Extreme](https://www.spoj.com/problems/GCDEX/)
+subtitle: GCD Extreme
 gh-repo: HeNeos/heneos.github.io
 gh-badge: [star, follow]
 tags: [SPOJ]
 comments: true
 ---
+
+[**GCD EXTREME**](https://www.spoj.com/problems/GCDEX/)
 
 ## Statement
 
