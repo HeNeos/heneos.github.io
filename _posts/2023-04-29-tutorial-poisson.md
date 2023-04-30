@@ -127,5 +127,6 @@ w = Function(V)
 solve(a == L, w, bc)
 ```
 
-![deflection](https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/tutorial/poisson/deflection.jpg){: .mx-auto.d-block :}
-![load](https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/tutorial/poisson/load.jpg){: .mx-auto.d-block :}
+![deflection](https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/tutorial/poisson/deflection.png){: .mx-auto.d-block :}
+
+![load](https://raw.githubusercontent.com/HeNeos/heneos.github.io/master/assets/img/tutorial/poisson/load.png){: .mx-auto.d-block :}
