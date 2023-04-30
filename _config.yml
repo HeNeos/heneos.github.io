@@ -256,6 +256,8 @@ paginate: 5
 
 kramdown:
   input: GFM
+  parse_block_html: true
+  syntax_highlighter: rouge
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
@@ -287,4 +289,5 @@ exclude:
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+  - jemoji
 
