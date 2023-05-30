@@ -290,4 +290,5 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
-
+  - jekyll-feed
+  - jekyll-seo-tag
