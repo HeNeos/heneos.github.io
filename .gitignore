@@ -13,4 +13,4 @@ Gemfile.lock
 beautiful-jekyll-theme-*.gem
 
 .vscode
-./temp
+temp/
