@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Project Euler 432</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Project Euler 432</h1>
+<p class="subtitle">Totient Sum</p>
+</header>
+<p>I found this problem where I was trying to find a hard one related to
+summative functions, but surpresingly I don’t expect that I’ll really
+need to apply so many math and programming concepts here. My first
+tought was to solve it with previous methods that I use for other
+problems, but none of them works. The intuition to solve this is simple,
+and the recursive formula it’s easy for simple cases. I find a
+sub-linear algorithm to solve this problem, but I don’t know how to
+calculate a better bound for my time complexity.</p>
+<h2 id="statement">Statement</h2>
+<p>Let S(n,m) = ∑ 𝜑(n× i) for 1 ≤ i ≤ m. (𝜑 is Euler’s totient
+function)</p>
+<p>You are given that S(510510,10⁶)=45480596821125120.</p>
+<p>Find S(510510, 10¹¹). Give the last 9 digits of your answer.</p>
+<h2 id="solution">Solution</h2>
+<h3 id="naive-solution">Naive solution</h3>
+<p>Let’s try with the simplest and naive solution, just doing a for:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> <span class="dt">long</span> phi<span class="op">(</span><span class="dt">long</span> <span class="dt">long</span> n<span class="op">){</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="dt">long</span> x <span class="op">=</span> n<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">2</span><span class="op">;</span> i<span class="op">*</span>i<span class="op">&lt;=</span>x<span class="op">;</span> i<span class="op">++){</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>x<span class="op">%</span>i <span class="op">==</span> <span class="dv">0</span><span class="op">){</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span><span class="op">(</span>x<span class="op">%</span>i <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> x <span class="op">/=</span> i<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            n <span class="op">-=</span> n<span class="op">/</span>i<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>x <span class="op">!=</span> <span class="dv">1</span><span class="op">)</span> n <span class="op">-=</span> n<span class="op">/</span>x<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dt">long</span> <span class="dt">long</span> S<span class="op">(</span><span class="dt">int</span> n<span class="op">,</span> <span class="dt">long</span> <span class="dt">long</span> m<span class="op">){</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">long</span> <span class="dt">long</span> x <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">long</span> <span class="dt">long</span> k<span class="op">=</span><span class="dv">1</span><span class="op">;</span> k<span class="op">&lt;=</span><span class="fl">1e11</span><span class="op">;</span> k<span class="op">++){</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        x <span class="op">+=</span> phi<span class="op">(</span>n<span class="op">*</span>k<span class="op">);</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Let’s analyze the time complexity of each function, calculate 𝜑(n) in
+a naive way could take in the worst case up to 𝒪(√{n}). The function to
+calculate S(n,m) it’s just a simple <code>for</code>:</p>
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0A%20%20%20%20%5Cmathcal%7BO%7D%28S%28n%2C%20m%29%29%20%26%3D%20%5Csum_%7Bk%3D1%7D%5E%7Bm%7D%20%5Cmathcal%7BO%7D%28%5Cvarphi%28n%20k%29%29%5Ccr%0A%20%20%20%20%26%3D%20%5Csum_%7Bk%3D1%7D%5E%7Bm%7D%20%5Cmathcal%7BO%7D%28%5Csqrt%7Bnk%7D%29%5Ccr%0A%20%20%20%20%26%3D%20%5Cmathcal%7BO%7D%28m%5Csqrt%7Bnm%7D%29%0A%5Cend%7Baligned%7D"
+alt="\begin{aligned}
+    \mathcal{O}(S(n, m)) &amp;= \sum_{k=1}^{m} \mathcal{O}(\varphi(n k))\cr
+    &amp;= \sum_{k=1}^{m} \mathcal{O}(\sqrt{nk})\cr
+    &amp;= \mathcal{O}(m\sqrt{nm})
+\end{aligned}" title="\begin{aligned}
+    \mathcal{O}(S(n, m)) &amp;= \sum_{k=1}^{m} \mathcal{O}(\varphi(n k))\cr
+    &amp;= \sum_{k=1}^{m} \mathcal{O}(\sqrt{nk})\cr
+    &amp;= \mathcal{O}(m\sqrt{nm})
+\end{aligned}" class="math display" />
+<p>As you can see, it’s a terrible time complexity for the constraints
+of the problem. You can try to compute it, but it will take you at least
+a few years to finish it.</p>
+<p>You can try to improve the complexity calculating efficiently the
+function 𝜑(n), but even if you can do that in constant time, your
+complexity will be 𝒪(m). So, a common thinking for this problem is don’t
+iterate over m to avoid the linear behavior.</p>
+<h3 id="sub-linear-method">Sub-linear method</h3>
+<p>I already solved some kind of these problems before, so my first
+tought was to apply the hyperbola method with the dirichlet notation to
+see if I can reduce to something like to 𝒪(n²ᐟ³), but I can’t find a
+nice way to do that.</p>
+<p>My second attempt was using the Mobius function, I have more progress
+with this, but in some point I get stuck and don’t know how to
+procedure, so again, this idea was useless.</p>
+<p>Complex problems requires simple problems, it makes some sense. I
+mean, let’s try with simpler cases.</p>
+<h4 id="n-is-prime">n is prime</h4>
+<p>Take a look to the function S(n, m) when n is a prime number, to
+simplify the notation I will use the letter p:</p>
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0AS%28p%2C%20m%29%20%26%3D%20%5Csum_%7Bk%3D1%7D%5E%7Bm%7D%20%5Cvarphi%28pk%29%5Ccr%0A%26%3D%20%5Cvarphi%28p%29%20%2B%20%5Cvarphi%282p%29%20%2B%20%5Cldots%20%2B%20%5Cvarphi%28pm%29%5Ccr%0A%26%3D%20%5Cvarphi%28p%29%5CBig%28%5Cvarphi%281%29%20%2B%20%5Cvarphi%282%29%20%2B%20%5Cldots%20%2B%20%5Cvarphi%28p%29%20%2B%20%5Cldots%20%2B%20%5Cvarphi%28m%29%20%5CBig%29%5Ccr%0A%26%2B%20%28%5Cvarphi%28p%5E2%29-%5Cvarphi%28p%29%5Cvarphi%28p%29%29%20%2B%20%5Cldots%20%2B%20%28%5Cvarphi%28p%5Ccdot%20p%20%5Ccdot%20%5Clfloor%20m%2Fp%5Crfloor%29-%5Cvarphi%28p%29%5Cvarphi%28p%5Ccdot%20%5Clfloor%20m%2Fp%5Crfloor%29%29%5Ccr%0A%26%3D%20%5Cvarphi%28p%29%20%5CPhi%28m%29%20%2B%20%5Cvarphi%28p%29%20%2B%20%5Cvarphi%282p%29%20%2B%20%5Cldots%20%2B%20%5Cvarphi%28p%5Ccdot%20%5Clfloor%20m%2Fp%20%5Crfloor%29%5Ccr%0A%26%3D%20%5Cvarphi%28p%29%5CPhi%28m%29%20%2B%20S%28p%2C%20%5Clfloor%20m%2Fp%20%5Crfloor%29%0A%5Cend%7Baligned%7D"
+alt="\begin{aligned}
+S(p, m) &amp;= \sum_{k=1}^{m} \varphi(pk)\cr
+&amp;= \varphi(p) + \varphi(2p) + \ldots + \varphi(pm)\cr
+&amp;= \varphi(p)\Big(\varphi(1) + \varphi(2) + \ldots + \varphi(p) + \ldots + \varphi(m) \Big)\cr
+&amp;+ (\varphi(p^2)-\varphi(p)\varphi(p)) + \ldots + (\varphi(p\cdot p \cdot \lfloor m/p\rfloor)-\varphi(p)\varphi(p\cdot \lfloor m/p\rfloor))\cr
+&amp;= \varphi(p) \Phi(m) + \varphi(p) + \varphi(2p) + \ldots + \varphi(p\cdot \lfloor m/p \rfloor)\cr
+&amp;= \varphi(p)\Phi(m) + S(p, \lfloor m/p \rfloor)
+\end{aligned}" title="\begin{aligned}
+S(p, m) &amp;= \sum_{k=1}^{m} \varphi(pk)\cr
+&amp;= \varphi(p) + \varphi(2p) + \ldots + \varphi(pm)\cr
+&amp;= \varphi(p)\Big(\varphi(1) + \varphi(2) + \ldots + \varphi(p) + \ldots + \varphi(m) \Big)\cr
+&amp;+ (\varphi(p^2)-\varphi(p)\varphi(p)) + \ldots + (\varphi(p\cdot p \cdot \lfloor m/p\rfloor)-\varphi(p)\varphi(p\cdot \lfloor m/p\rfloor))\cr
+&amp;= \varphi(p) \Phi(m) + \varphi(p) + \varphi(2p) + \ldots + \varphi(p\cdot \lfloor m/p \rfloor)\cr
+&amp;= \varphi(p)\Phi(m) + S(p, \lfloor m/p \rfloor)
+\end{aligned}" class="math display" />
+<p>This is a really good recursive definition. Let’s to analyze its
+complexity:</p>
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0A%5Cmathcal%7BO%7D%28S%28p%2C%20m%29%29%20%26%3D%20%5Cmathcal%7BO%7D%28%5CPhi%28m%29%29%20%2B%20%5Cmathcal%7BO%7D%28S%28p%2C%20m%2Fp%29%29%5Ccr%0A%26%3D%20%5Clog_%7Bp%7D%28m%29%20%5Cmathcal%7BO%7D%28%5CPhi%28m%29%29%5Ccr%0A%26%3D%20%5Cmathcal%7BO%7D%28m%5E%7B2%2F3%7D%5Clog_%7Bp%7D%20m%29%0A%5Cend%7Baligned%7D"
+alt="\begin{aligned}
+\mathcal{O}(S(p, m)) &amp;= \mathcal{O}(\Phi(m)) + \mathcal{O}(S(p, m/p))\cr
+&amp;= \log_{p}(m) \mathcal{O}(\Phi(m))\cr
+&amp;= \mathcal{O}(m^{2/3}\log_{p} m)
+\end{aligned}" title="\begin{aligned}
+\mathcal{O}(S(p, m)) &amp;= \mathcal{O}(\Phi(m)) + \mathcal{O}(S(p, m/p))\cr
+&amp;= \log_{p}(m) \mathcal{O}(\Phi(m))\cr
+&amp;= \mathcal{O}(m^{2/3}\log_{p} m)
+\end{aligned}" class="math display" />
+<p>I explained in a previous post how to calculate 𝛷(n) in n²ᐟ³. As you
+can see, this is a sub-linear solution and could end the task in few
+seconds, but <em>sadly</em>, n is not a prime number.</p>
+<h4 id="n-is-a-prime-power">n is a prime power</h4>
+<p>Let’s analyze a more general case, when n = pᵏ, for some prime number
+p and for some power k&gt;1:</p>
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0AS%28p%5E%7Bk%7D%2C%20m%29%20%26%3D%20%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%20%5Cvarphi%28p%5E%7Bk%7D%20i%29%5Ccr%0A%26%3D%20%5Cvarphi%28p%5E%7Bk%7D%29%20%2B%20%5Cvarphi%282p%5E%7Bk%7D%29%20%2B%20%5Cldots%20%2B%20%5Cvarphi%28p%5E%7Bk%7Dm%29%5Ccr%0A%26%3D%20%5Cvarphi%28p%5E%7Bk%7D%29%5CBig%28%5Cvarphi%281%29%20%2B%20%5Cvarphi%282%29%20%2B%20%5Cldots%20%2B%20%5Cvarphi%28p%29%20%2B%20%5Cldots%20%2B%20%5Cvarphi%28m%29%20%5CBig%29%5Ccr%0A%26%2B%20%28%5Cvarphi%28p%5E%7Bk%2B1%7D%29-%5Cvarphi%28p%5E%7Bk%7D%29%5Cvarphi%28p%29%29%20%2B%20%5Cldots%20%2B%20%28%5Cvarphi%28p%5E%7Bk%7D%5Ccdot%20p%20%5Ccdot%20%5Clfloor%20m%2Fp%5Crfloor%29-%5Cvarphi%28p%5E%7Bk%7D%29%5Cvarphi%28p%5Ccdot%20%5Clfloor%20m%2Fp%5Crfloor%29%29%5Ccr%0A%26%3D%20%5Cvarphi%28p%5E%7Bk%7D%29%20%5CPhi%28m%29%20%2B%20%5Cvarphi%28p%5E%7Bk%7D%29%20%2B%20%5Cvarphi%282p%5E%7Bk%7D%29%20%2B%20%5Cldots%20%2B%20%5Cvarphi%28p%5E%7Bk%7D%5Ccdot%20%5Clfloor%20m%2Fp%20%5Crfloor%29%5Ccr%0A%26%3D%20%5Cvarphi%28p%29%5CPhi%28m%29%20%2B%20S%28p%5E%7Bk%7D%2C%20%5Clfloor%20m%2Fp%20%5Crfloor%29%0A%5Cend%7Baligned%7D"
+alt="\begin{aligned}
+S(p^{k}, m) &amp;= \sum_{i=1}^{m} \varphi(p^{k} i)\cr
+&amp;= \varphi(p^{k}) + \varphi(2p^{k}) + \ldots + \varphi(p^{k}m)\cr
+&amp;= \varphi(p^{k})\Big(\varphi(1) + \varphi(2) + \ldots + \varphi(p) + \ldots + \varphi(m) \Big)\cr
+&amp;+ (\varphi(p^{k+1})-\varphi(p^{k})\varphi(p)) + \ldots + (\varphi(p^{k}\cdot p \cdot \lfloor m/p\rfloor)-\varphi(p^{k})\varphi(p\cdot \lfloor m/p\rfloor))\cr
+&amp;= \varphi(p^{k}) \Phi(m) + \varphi(p^{k}) + \varphi(2p^{k}) + \ldots + \varphi(p^{k}\cdot \lfloor m/p \rfloor)\cr
+&amp;= \varphi(p)\Phi(m) + S(p^{k}, \lfloor m/p \rfloor)
+\end{aligned}" title="\begin{aligned}
+S(p^{k}, m) &amp;= \sum_{i=1}^{m} \varphi(p^{k} i)\cr
+&amp;= \varphi(p^{k}) + \varphi(2p^{k}) + \ldots + \varphi(p^{k}m)\cr
+&amp;= \varphi(p^{k})\Big(\varphi(1) + \varphi(2) + \ldots + \varphi(p) + \ldots + \varphi(m) \Big)\cr
+&amp;+ (\varphi(p^{k+1})-\varphi(p^{k})\varphi(p)) + \ldots + (\varphi(p^{k}\cdot p \cdot \lfloor m/p\rfloor)-\varphi(p^{k})\varphi(p\cdot \lfloor m/p\rfloor))\cr
+&amp;= \varphi(p^{k}) \Phi(m) + \varphi(p^{k}) + \varphi(2p^{k}) + \ldots + \varphi(p^{k}\cdot \lfloor m/p \rfloor)\cr
+&amp;= \varphi(p)\Phi(m) + S(p^{k}, \lfloor m/p \rfloor)
+\end{aligned}" class="math display" />
+<p>the recursion is similar to the previous one, but this formula could
+work for numbers like 2³⁷, which is greater than 10¹¹, but it’s not what
+the problem requires, some we need to continue searching the general
+formula.</p>
+<h4 id="n-is-a-product-of-two-primes">n is a product of two primes</h4>
+<p>Now, let’s analyze the case when n = p₁p₂, where p₁ and p₂ are
+different prime numbers.</p>
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0AS%28p_%7B1%7Dp_%7B2%7D%2C%20m%29%20%26%3D%20%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%20%5Cvarphi%28p_%7B1%7Dp_%7B2%7Di%29%20%5Ccr%0A%26%3D%20%5Cvarphi%28p_%7B1%7Dp_%7B2%7D%29%5CBig%28%20%5Cvarphi%281%29%20%2B%20%5Cvarphi%282%29%20%2B%20%5Cldots%20%2B%20%5Cvarphi%28m%29%20%5CBig%29%20%5Ccr%0A%26%2B%20%28%5Cvarphi%28p_%7B1%7D%5E%7B2%7Dp_%7B2%7D%29%20-%20%5Cvarphi%28p_%7B1%7D%29%5Cvarphi%28p_%7B1%7Dp_%7B2%7D%29%29%20%2B%20%28%5Cvarphi%28p_%7B1%7Dp_%7B2%7D%5E%7B2%7D%29%20-%20%5Cvarphi%28p_%7B2%7D%29%5Cvarphi%28p_%7B1%7Dp_%7B2%7D%29%29%20-%20%28%5Cvarphi%28p_%7B1%7D%5E%7B2%7Dp_%7B2%7D%5E%7B2%7D%29%20-%20%5Cvarphi%28p_%7B1%7Dp_%7B2%7D%29%5Cvarphi%28p_%7B1%7D%5E%7B2%7Dp_%7B2%7D%5E%7B2%7D%29%29%20%2B%20%5Cldots%5Ccr%0A%26%3D%20%5Cvarphi%28p_%7B1%7Dp_%7B2%7D%29%5CPhi%28m%29%20%2B%20S%28p_%7B1%7Dp_%7B2%7D%2C%20%5Clfloor%20m%2Fp_%7B1%7D%20%5Crfloor%29%20%2B%20S%28p_%7B1%7Dp_%7B2%7D%2C%20%5Clfloor%20m%2Fp_%7B2%7D%20%5Crfloor%29%20-%20S%28p_%7B1%7Dp_%7B2%7D%2C%20%5Clfloor%20m%2Fp_%7B1%7Dp_%7B2%7D%20%5Crfloor%29%0A%5Cend%7Baligned%7D"
+alt="\begin{aligned}
+S(p_{1}p_{2}, m) &amp;= \sum_{i=1}^{m} \varphi(p_{1}p_{2}i) \cr
+&amp;= \varphi(p_{1}p_{2})\Big( \varphi(1) + \varphi(2) + \ldots + \varphi(m) \Big) \cr
+&amp;+ (\varphi(p_{1}^{2}p_{2}) - \varphi(p_{1})\varphi(p_{1}p_{2})) + (\varphi(p_{1}p_{2}^{2}) - \varphi(p_{2})\varphi(p_{1}p_{2})) - (\varphi(p_{1}^{2}p_{2}^{2}) - \varphi(p_{1}p_{2})\varphi(p_{1}^{2}p_{2}^{2})) + \ldots\cr
+&amp;= \varphi(p_{1}p_{2})\Phi(m) + S(p_{1}p_{2}, \lfloor m/p_{1} \rfloor) + S(p_{1}p_{2}, \lfloor m/p_{2} \rfloor) - S(p_{1}p_{2}, \lfloor m/p_{1}p_{2} \rfloor)
+\end{aligned}" title="\begin{aligned}
+S(p_{1}p_{2}, m) &amp;= \sum_{i=1}^{m} \varphi(p_{1}p_{2}i) \cr
+&amp;= \varphi(p_{1}p_{2})\Big( \varphi(1) + \varphi(2) + \ldots + \varphi(m) \Big) \cr
+&amp;+ (\varphi(p_{1}^{2}p_{2}) - \varphi(p_{1})\varphi(p_{1}p_{2})) + (\varphi(p_{1}p_{2}^{2}) - \varphi(p_{2})\varphi(p_{1}p_{2})) - (\varphi(p_{1}^{2}p_{2}^{2}) - \varphi(p_{1}p_{2})\varphi(p_{1}^{2}p_{2}^{2})) + \ldots\cr
+&amp;= \varphi(p_{1}p_{2})\Phi(m) + S(p_{1}p_{2}, \lfloor m/p_{1} \rfloor) + S(p_{1}p_{2}, \lfloor m/p_{2} \rfloor) - S(p_{1}p_{2}, \lfloor m/p_{1}p_{2} \rfloor)
+\end{aligned}" class="math display" />
+<h4 id="general-case">General case</h4>
+<p>I don’t have a proof for the next formula, but since the case for two
+primes correspond to apply the inclusion - exclusion principle, I think
+that makes sense to think that in the general case it also happens:</p>
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0AS%28n%2C%20m%29%20%26%3D%20%5Cvarphi%28n%29%5CPhi%28m%29%20%2B%20%5Csum%20S%28n%2C%20%5Clfloor%20m%2Fp_%7Bi%7D%5Crfloor%29%20-%20%5Csum%20S%28n%2C%20%5Clfloor%20m%2Fp_%7Bi%7Dp_%7Bj%7D%5Crfloor%29%20%2B%20%5Cldots%0A%5Cend%7Baligned%7D"
+alt="\begin{aligned}
+S(n, m) &amp;= \varphi(n)\Phi(m) + \sum S(n, \lfloor m/p_{i}\rfloor) - \sum S(n, \lfloor m/p_{i}p_{j}\rfloor) + \ldots
+\end{aligned}" title="\begin{aligned}
+S(n, m) &amp;= \varphi(n)\Phi(m) + \sum S(n, \lfloor m/p_{i}\rfloor) - \sum S(n, \lfloor m/p_{i}p_{j}\rfloor) + \ldots
+\end{aligned}" class="math display" />
+<p>Let’s analyze the time complexity:</p>
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0A%5Cmathcal%7BO%7D%28S%28n%2C%20m%29%29%20%26%3D%20%5Cmathcal%7BO%7D%28m%5E%7B2%2F3%7D%29%20%2B%20%5Cmathcal%7BO%7D%28%5Csum%20S%28n%2C%20m%2Fp_%7Bi%7D%29%29%5Ccr%0A%26%3D%20%5Cmathcal%7BO%7D%28m%5E%7B2%2F3%7D%29%20%5Ctimes%20%5Cmathcal%7BO%7D%28f%28%5Clog%28n%29%2F%5Clog%5Clog%28n%29%2C%20m%29%29%0A%5Cend%7Baligned%7D"
+alt="\begin{aligned}
+\mathcal{O}(S(n, m)) &amp;= \mathcal{O}(m^{2/3}) + \mathcal{O}(\sum S(n, m/p_{i}))\cr
+&amp;= \mathcal{O}(m^{2/3}) \times \mathcal{O}(f(\log(n)/\log\log(n), m))
+\end{aligned}" title="\begin{aligned}
+\mathcal{O}(S(n, m)) &amp;= \mathcal{O}(m^{2/3}) + \mathcal{O}(\sum S(n, m/p_{i}))\cr
+&amp;= \mathcal{O}(m^{2/3}) \times \mathcal{O}(f(\log(n)/\log\log(n), m))
+\end{aligned}" class="math display" />
+<p>Now, let me explain what is f. To calculate S(n,m), I’m iterating
+over each possible subset of the prime factors of n, a nice upper bound
+for this concept is log(n)/log log(n). So, for a numer n, it’s expected
+to have log(n)/log log(n) number of distinct prime factors. Iterate over
+them takes 2ˢⁱᶻᵉ, but applying memoization to the function S(n,m) means
+that it will only iterate over the distinct values of ⌊ m/P⌋, where P is
+the product of some subset of the prime factors. It’s hard to say what
+is the time complexity, but to simplify, we can consider that we’re
+iterating over all possible subsets in each recursive call:</p>
+<img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0A%5Cmathcal%7BO%7D%28S%28n%2C%20m%29%29%20%26%3C%20%5Cmathcal%7BO%7D%282%5E%7B%5Clog%28n%29%2F%5Clog%5Clog%28n%29%7D%20%5Clog%28m%29%20m%5E%7B2%2F3%7D%29%0A%5Cend%7Baligned%7D"
+alt="\begin{aligned}
+\mathcal{O}(S(n, m)) &amp;&lt; \mathcal{O}(2^{\log(n)/\log\log(n)} \log(m) m^{2/3})
+\end{aligned}" title="\begin{aligned}
+\mathcal{O}(S(n, m)) &amp;&lt; \mathcal{O}(2^{\log(n)/\log\log(n)} \log(m) m^{2/3})
+\end{aligned}" class="math display" />
+<p>my code finds the solution for the problem in less than 2
+seconds.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> std<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> ll <span class="op">=</span> <span class="dt">long</span> <span class="dt">long</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> t128 <span class="op">=</span> <span class="dt">__int128</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">#define N </span><span class="dv">30000000</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="pp">#define MOD </span><span class="dv">1000000000</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> phi<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lpf<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> Phi<span class="op">[</span>N<span class="op">];</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>vector <span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> f<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>vector <span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> v<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>map <span class="op">&lt;</span>ll<span class="op">,</span> ll<span class="op">&gt;</span> Phi_cache<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>map <span class="op">&lt;</span>ll<span class="op">,</span> ll<span class="op">&gt;</span> S_cache<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> cphi<span class="op">(){</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    phi<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">2</span><span class="op">;</span> i<span class="op">&lt;</span>N<span class="op">;</span> i<span class="op">++){</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(!</span>phi<span class="op">[</span>i<span class="op">]){</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            phi<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> i<span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            lpf<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span><span class="op">(</span>ll j<span class="op">=</span><span class="dv">2</span><span class="op">*</span>i<span class="op">;</span> j<span class="op">&lt;</span>N<span class="op">;</span> j<span class="op">+=</span>i<span class="op">){</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span><span class="op">(</span>phi<span class="op">[</span>j<span class="op">]</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> phi<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> j<span class="op">;</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                phi<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> phi<span class="op">[</span>j<span class="op">]/</span>i<span class="op">*(</span>i<span class="op">-</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span><span class="op">(</span>lpf<span class="op">[</span>j<span class="op">]</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> lpf<span class="op">[</span>j<span class="op">]</span> <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span> i<span class="op">&lt;</span>N<span class="op">;</span> i<span class="op">++)</span> Phi<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>Phi<span class="op">[</span>i<span class="op">-</span><span class="dv">1</span><span class="op">]</span> <span class="op">+</span> phi<span class="op">[</span>i<span class="op">])%</span>MOD<span class="op">;</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>vector <span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> prime_factors<span class="op">(</span><span class="dt">int</span> n<span class="op">){</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    vector <span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> ans<span class="op">;</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span><span class="op">(</span>n <span class="op">&gt;</span> <span class="dv">1</span><span class="op">){</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> d <span class="op">=</span> lpf<span class="op">[</span>n<span class="op">];</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span><span class="op">(</span>n<span class="op">%</span>d <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> n <span class="op">/=</span> d<span class="op">;</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        ans<span class="op">.</span>push_back<span class="op">(</span>d<span class="op">);</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ans<span class="op">;</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>ll T<span class="op">(</span>ll n<span class="op">){</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    t128 ans <span class="op">=</span> n<span class="op">;</span> ans <span class="op">*=</span> <span class="op">(</span>n<span class="op">+</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    ans <span class="op">/=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    ans <span class="op">%=</span> MOD<span class="op">;</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ans<span class="op">;</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>ll calc_Phi<span class="op">(</span>ll n<span class="op">){</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>n <span class="op">&lt;</span> N<span class="op">)</span> <span class="cf">return</span> Phi<span class="op">[</span>n<span class="op">];</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>Phi_cache<span class="op">.</span>find<span class="op">(</span>n<span class="op">)</span> <span class="op">!=</span> Phi_cache<span class="op">.</span>end<span class="op">())</span> <span class="cf">return</span> Phi_cache<span class="op">[</span>n<span class="op">];</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    ll ans <span class="op">=</span> T<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    ll sqrt_n <span class="op">=</span> floor<span class="op">(</span>sqrt<span class="op">(</span>n<span class="op">));</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> m<span class="op">=</span><span class="dv">1</span><span class="op">;</span> m <span class="op">&lt;</span> n<span class="op">/</span>sqrt_n<span class="op">;</span> m<span class="op">++){</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        ans <span class="op">-=</span> <span class="op">(</span><span class="dv">1</span><span class="bu">LL</span><span class="op">*</span>Phi<span class="op">[</span>m<span class="op">]*(</span>n<span class="op">/</span>m <span class="op">-</span> n<span class="op">/(</span>m<span class="op">+</span><span class="dv">1</span><span class="op">)))%</span>MOD<span class="op">;</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>        ans <span class="op">%=</span> MOD<span class="op">;</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> m<span class="op">=</span><span class="dv">2</span><span class="op">;</span> m<span class="op">&lt;=</span>sqrt_n<span class="op">;</span> m<span class="op">++){</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        ans <span class="op">-=</span> calc_Phi<span class="op">(</span>n<span class="op">/</span>m<span class="op">);</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        ans <span class="op">%=</span> MOD<span class="op">;</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    ans <span class="op">+=</span> MOD<span class="op">;</span> ans <span class="op">%=</span> MOD<span class="op">;</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    Phi_cache<span class="op">[</span>n<span class="op">]</span> <span class="op">=</span> ans<span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ans<span class="op">;</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>ll S<span class="op">(</span><span class="dt">int</span> n<span class="op">,</span> ll m<span class="op">){</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>m <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>m <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="cf">return</span> phi<span class="op">[</span>n<span class="op">];</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>S_cache<span class="op">.</span>find<span class="op">(</span>m<span class="op">)</span> <span class="op">!=</span> S_cache<span class="op">.</span>end<span class="op">())</span> <span class="cf">return</span> S_cache<span class="op">[</span>m<span class="op">];</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> sz <span class="op">=</span> f<span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    ll ans <span class="op">=</span> <span class="op">(</span><span class="dv">1</span><span class="bu">LL</span><span class="op">*</span>phi<span class="op">[</span>n<span class="op">]*</span>calc_Phi<span class="op">(</span>m<span class="op">))%</span>MOD<span class="op">;</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span> i<span class="op">&lt;(</span><span class="dv">1</span><span class="op">&lt;&lt;</span>sz<span class="op">);</span> i<span class="op">++){</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> c <span class="op">=</span> <span class="fu">__builtin_popcount</span><span class="op">(</span>i<span class="op">);</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span><span class="op">(</span>c<span class="op">%</span><span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> ans <span class="op">-=</span> S<span class="op">(</span>n<span class="op">,</span> m<span class="op">/</span>v<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> ans <span class="op">+=</span> S<span class="op">(</span>n<span class="op">,</span> m<span class="op">/</span>v<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>        ans <span class="op">%=</span> MOD<span class="op">;</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span><span class="op">(</span>ans <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span> ans <span class="op">+=</span> MOD<span class="op">;</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    S_cache<span class="op">[</span>m<span class="op">]</span> <span class="op">=</span> ans<span class="op">;</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ans<span class="op">;</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> fill_mask<span class="op">(){</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> sz <span class="op">=</span> f<span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    v<span class="op">.</span>resize<span class="op">((</span><span class="dv">1</span><span class="op">&lt;&lt;</span>sz<span class="op">));</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    v<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> i<span class="op">=</span><span class="dv">1</span><span class="op">;</span> i<span class="op">&lt;(</span><span class="dv">1</span><span class="op">&lt;&lt;</span>sz<span class="op">);</span> i<span class="op">++){</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> previous_mask <span class="op">=</span> v<span class="op">[</span>i<span class="op">&amp;(</span>i<span class="op">-</span><span class="dv">1</span><span class="op">)];</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> pos <span class="op">=</span> <span class="fu">__builtin_ctz</span><span class="op">(</span>i<span class="op">&amp;(-</span>i<span class="op">));</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> val <span class="op">=</span> previous_mask<span class="op">*</span>f<span class="op">[</span>pos<span class="op">];</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>        v<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> val<span class="op">;</span></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(){</span></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>    cphi<span class="op">();</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> n<span class="op">;</span> ll m<span class="op">;</span> cin <span class="op">&gt;&gt;</span> n <span class="op">&gt;&gt;</span> m<span class="op">;</span></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> prime_factors<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>    fill_mask<span class="op">();</span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> S<span class="op">(</span>n<span class="op">,</span> m<span class="op">)</span> <span class="op">&lt;&lt;</span> <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span><span class="op">;</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</body>
+</html>
