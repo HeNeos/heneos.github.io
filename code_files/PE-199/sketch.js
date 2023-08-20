@@ -4,13 +4,16 @@ let currentLevel = 0;
 let finish = false;
 let top_level = 1;
 let maxLevel = 10;
-let r_0 = 500;
+let r_0 = 250;
 let count_level = Array(maxLevel+1).fill(0);
 let r_1 = r_0 * Math.sqrt(3) / (2 + Math.sqrt(3));
 let c0 = { r: -r_0, x: 0, y: 0 };
 let c1 = { r: r_1, x: 0, y: r_0 - r_1 };
 let c2 = { r: r_1, x: Math.sqrt(3) * (r_0 - r_1) / 2, y: -(r_0 - r_1) / 2 };
-let c3 = { r: r_1, x: -Math.sqrt(3) * (r_0 - r_1) / 2, y: -(r_0 - r_1) / 2};  
+let c3 = { r: r_1, x: -Math.sqrt(3) * (r_0 - r_1) / 2, y: -(r_0 - r_1) / 2};
+
+let pg;
+
 let colors = [
   '#000004',
   '#0d0a29',
@@ -40,16 +43,11 @@ P5Capture.setDefaultOptions({
 
 
 function setup() {
-  createCanvas(1000, 1000);
+  createCanvas(500, 500);
   background(255);
-  pixelDensity(1);
+  pixelDensity(32.0);
   frameRate(90);
-  // requestAnimationFrame(draw);
-  // circles.push([c0, c1, c2]);
-  // circles.push([c0, c1, c3]);
-  // circles.push([c0, c2, c3]);
-  // circles.push([c1, c2, c3]);
-  
+
   generate_all_circles();
 }
 
@@ -84,9 +82,7 @@ function generate_all_circles(){
       let color = colors[level+1];
       let C = new Circle(x, y, r, color, level);
       count_level[level]++;
-      // fill(color);
-      // stroke(0);
-      // ellipse(x, y, abs(r * 2), abs(r * 2));
+
       newCircles.push([levelCircles[0], levelCircles[1], newCircle]);
       newCircles.push([levelCircles[0], levelCircles[2], newCircle]);
       newCircles.push([levelCircles[1], levelCircles[2], newCircle]);
