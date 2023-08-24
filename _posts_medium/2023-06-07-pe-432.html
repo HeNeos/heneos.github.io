@@ -233,7 +233,7 @@
 <h1 class="title">Project Euler 432</h1>
 <p class="subtitle">Totient Sum</p>
 </header>
-<p>I found this problem where I was trying to find a hard one related to
+<p>I found this problem when I was trying to find a hard one related to
 summative functions, but surpresingly I don’t expect that I’ll really
 need to apply so many math and programming concepts here. My first
 tought was to solve it with previous methods that I use for other
@@ -320,7 +320,7 @@ S(p, m) &amp;= \sum_{k=1}^{m} \varphi(pk)\cr
 &amp;= \varphi(p) \Phi(m) + \varphi(p) + \varphi(2p) + \ldots + \varphi(p\cdot \lfloor m/p \rfloor)\cr
 &amp;= \varphi(p)\Phi(m) + S(p, \lfloor m/p \rfloor)
 \end{aligned}" class="math display" />
-<p>This is a really good recursive definition. Let’s to analyze its
+<p>This is a really good recursive definition. Let’s analyze its
 complexity:</p>
 <img style="vertical-align:middle"
 src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0A%5Cmathcal%7BO%7D%28S%28p%2C%20m%29%29%20%26%3D%20%5Cmathcal%7BO%7D%28%5CPhi%28m%29%29%20%2B%20%5Cmathcal%7BO%7D%28S%28p%2C%20m%2Fp%29%29%5Ccr%0A%26%3D%20%5Clog_%7Bp%7D%28m%29%20%5Cmathcal%7BO%7D%28%5CPhi%28m%29%29%5Ccr%0A%26%3D%20%5Cmathcal%7BO%7D%28m%5E%7B2%2F3%7D%5Clog_%7Bp%7D%20m%29%0A%5Cend%7Baligned%7D"
@@ -358,7 +358,7 @@ S(p^{k}, m) &amp;= \sum_{i=1}^{m} \varphi(p^{k} i)\cr
 \end{aligned}" class="math display" />
 <p>the recursion is similar to the previous one, but this formula could
 work for numbers like 2³⁷, which is greater than 10¹¹, but it’s not what
-the problem requires, some we need to continue searching the general
+the problem requires, so we need to continue searching the general
 formula.</p>
 <h4 id="n-is-a-product-of-two-primes">n is a product of two primes</h4>
 <p>Now, let’s analyze the case when n = p₁p₂, where p₁ and p₂ are
