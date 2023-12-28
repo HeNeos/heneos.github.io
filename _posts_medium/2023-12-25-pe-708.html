@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Project Euler 708</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Project Euler 708</h1>
+<p class="subtitle">Twos Are All You Need</p>
+</header>
+<p>During the Christmas holidays, I was taking some <del>(many)</del> trains to reach Hamburg. And yes, I took only the regionals ones because I didn’t want to spend more money, instead I prefer to sacrifice my time <del>and health</del>, now everything looks like a tradeoff. Anyway, time in trains are a good excuse to do some project euler. I had many troubles trying to figure out why my code runs smooth until 10¹³ but crash and take hours for 10¹⁴, honestly, I still don’t know what is the reason <del>overflow</del>. Since, I’m no longer a Wolfram Mathematica employee, I don’t have access to the Wolfram Notebook without a license <del>which I don’t plan to buy</del>, however a good thing about working previously in Wolfram Research, is that you know more about their products and solutions. There is actually an official Wolfram Kernel software which can be used without a payed license, it only works through CLI but it’s enough for me, I think it’s possible to connect to something like <em>Jupyter</em>.</p>
+<p>So, my current solution is kinda cheat because I used Wolfram Mathematica to calculate some values that my algorithm take long time. Anyway, I think the solution is correct, but the implementation is not the most clever one.</p>
+<p>I have also other pending problems, because it was a really long trip <del>thanks DB</del>. However, I’ll see if I have time to post something else later.</p>
+<h2 id="statement">Statement</h2>
+<p>A positive integer, n, is factorised into prime factors. We define f(n) to be the product when each prime factor is replaced with 2. In addition we define f(1) = 1.</p>
+<p>For example, 90 = 2 × 3 × 3 × 5, then replacing the primes, 2 × 2 × 2 × 2 = 16, hence f(90) = 16 .</p>
+<p>Let S(N) = ∑ₙ₌₁^N f(n). You are given F(10⁸) = 9613563919.</p>
+<p>Find S(10¹⁴).</p>
+<h2 id="solution">Solution</h2>
+<h3 id="initial-solution">Initial solution</h3>
+<p>At first sight, it’s possible to notice that if n = ∏ᵢ₌₁ᵐ pᵢ<sup></sup>_ⁱ, then:</p>
+<br /><img style="vertical-align:middle" src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0Af%28n%29%20%3D%202%5E%7B%5Csum_%7Bi%3D1%7D%5E%7Bm%7D%20%5Calpha_%7Bi%7D%7D%0A%5Cend%7Baligned%7D" alt="\begin{aligned}
+f(n) = 2^{\sum_{i=1}^{m} \alpha_{i}}
+\end{aligned}" title="\begin{aligned}
+f(n) = 2^{\sum_{i=1}^{m} \alpha_{i}}
+\end{aligned}" /><br />
+<p>Let g(n, k) the amount of numbers less or equal than n with exactly k prime factors, then:</p>
+<br /><img style="vertical-align:middle" src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0AS%28n%29%20%3D%20%5Csum_%7Bk%3D1%7D%5E%7B%5Clog_2%28n%29%7D%202%5E%7Bk%7D%20g%28n%2C%20k%29%0A%5Cend%7Baligned%7D" alt="\begin{aligned}
+S(n) = \sum_{k=1}^{\log_2(n)} 2^{k} g(n, k)
+\end{aligned}" title="\begin{aligned}
+S(n) = \sum_{k=1}^{\log_2(n)} 2^{k} g(n, k)
+\end{aligned}" /><br />
+<p>Since the integer value of log₂(10¹⁴) is 46, the only problem is find an efficient way to calculate g(n, k) for a big value of n.</p>
+<p>Fortunately, there is already a definition for the value of g(n, i), which is called <em>k-almost prime</em>.</p>
+<br /><img style="vertical-align:middle" src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0Ag%28n%2C%20k%29%20%3D%20%5Csum_%7Bi%3D1%7D%5E%7B%5Cpi%28n%5E%7B1%2Fk%7D%29%7D%20%5Csum_%7Bj%3Di%7D%5E%7B%5Cpi%28%28n%2Fp_%7Bi%7D%29%5E%7B1%2F%28k-1%29%7D%29%7D%20%5Ccdots%20%5Csum_%7Bz%3Dy%7D%5E%7B%5Cpi%28%28n%2F%28p_%7Bi%7Dp_%7Bj%7D%5Ccdots%20p_%7By%7D%29%29%5E%7B1%2F2%7D%29%7D%20%5Cpi%5Cbigg%28%5Cfrac%7Bn%7D%7Bp_%7Bi%7Dp_%7Bj%7D%5Ccdots%20p_%7Bz%7D%7D%5Cbigg%29%20-%20z%20%2B%201%20%0A%5Cend%7Baligned%7D" alt="\begin{aligned}
+g(n, k) = \sum_{i=1}^{\pi(n^{1/k})} \sum_{j=i}^{\pi((n/p_{i})^{1/(k-1)})} \cdots \sum_{z=y}^{\pi((n/(p_{i}p_{j}\cdots p_{y}))^{1/2})} \pi\bigg(\frac{n}{p_{i}p_{j}\cdots p_{z}}\bigg) - z + 1 
+\end{aligned}" title="\begin{aligned}
+g(n, k) = \sum_{i=1}^{\pi(n^{1/k})} \sum_{j=i}^{\pi((n/p_{i})^{1/(k-1)})} \cdots \sum_{z=y}^{\pi((n/(p_{i}p_{j}\cdots p_{y}))^{1/2})} \pi\bigg(\frac{n}{p_{i}p_{j}\cdots p_{z}}\bigg) - z + 1 
+\end{aligned}" /><br />
+<p>As you can notice, it has a fancy recursive definition. Of course, the base case is when k=2, because the answer for k=1 is just 𝜋(n).</p>
+<br /><img style="vertical-align:middle" src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0Ag%28n%2C%202%29%20%3D%20%5Csum_%7Bi%3D1%7D%5E%7B%5Cpi%28n%5E%7B1%2F2%7D%29%7D%20%5Cpi%28n%2Fp_%7Bi%7D%29%20-%20i%20%2B%201%0A%5Cend%7Baligned%7D" alt="\begin{aligned}
+g(n, 2) = \sum_{i=1}^{\pi(n^{1/2})} \pi(n/p_{i}) - i + 1
+\end{aligned}" title="\begin{aligned}
+g(n, 2) = \sum_{i=1}^{\pi(n^{1/2})} \pi(n/p_{i}) - i + 1
+\end{aligned}" /><br />
+<p>However, to define an easy recursive <em>formula</em>, it’s neccessary to add a new parameter <em>it</em>, which represent from which prime number starts:</p>
+<br /><img style="vertical-align:middle" src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0Ag%28n%2C%20k%2C%20it%29%20%3D%20%5Csum_%7Bi%3Dit%7D%5E%7B%5Cpi%28n%5E%7B1%2Fk%7D%29%7D%20%5Csum_%7Bj%3Di%7D%5E%7B%5Cpi%28%28n%2Fp_%7Bi%7D%29%5E%7B1%2F%28k-1%29%7D%29%7D%20%5Ccdots%20%5Csum_%7Bz%3Dy%7D%5E%7B%5Cpi%28%28n%2F%28p_%7Bi%7Dp_%7Bj%7D%5Ccdots%20p_%7By%7D%29%29%5E%7B1%2F2%7D%29%7D%20%5Cpi%5Cbigg%28%5Cfrac%7Bn%7D%7Bp_%7Bi%7Dp_%7Bj%7D%5Ccdots%20p_%7Bz%7D%7D%5Cbigg%29%20-%20z%20%2B%201%20%0A%5Cend%7Baligned%7D" alt="\begin{aligned}
+g(n, k, it) = \sum_{i=it}^{\pi(n^{1/k})} \sum_{j=i}^{\pi((n/p_{i})^{1/(k-1)})} \cdots \sum_{z=y}^{\pi((n/(p_{i}p_{j}\cdots p_{y}))^{1/2})} \pi\bigg(\frac{n}{p_{i}p_{j}\cdots p_{z}}\bigg) - z + 1 
+\end{aligned}" title="\begin{aligned}
+g(n, k, it) = \sum_{i=it}^{\pi(n^{1/k})} \sum_{j=i}^{\pi((n/p_{i})^{1/(k-1)})} \cdots \sum_{z=y}^{\pi((n/(p_{i}p_{j}\cdots p_{y}))^{1/2})} \pi\bigg(\frac{n}{p_{i}p_{j}\cdots p_{z}}\bigg) - z + 1 
+\end{aligned}" /><br />
+<br /><img style="vertical-align:middle" src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0Ag%28n%2C%202%2C%20it%29%20%3D%20%5Csum_%7Bi%3Dit%7D%5E%7B%5Cpi%28n%5E%7B1%2F2%7D%29%7D%20%5Cpi%28n%2Fp_%7Bi%7D%29%20-%20i%20%2B%201%0A%5Cend%7Baligned%7D" alt="\begin{aligned}
+g(n, 2, it) = \sum_{i=it}^{\pi(n^{1/2})} \pi(n/p_{i}) - i + 1
+\end{aligned}" title="\begin{aligned}
+g(n, 2, it) = \sum_{i=it}^{\pi(n^{1/2})} \pi(n/p_{i}) - i + 1
+\end{aligned}" /><br />
+<p>So, we can define a new <em>simpler</em> formula for g(n, k, it):</p>
+<br /><img style="vertical-align:middle" src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0Ag%28n%2C%20k%2C%20it%29%20%3D%20%5Csum_%7Bi%3Dit%7D%5E%7B%5Cpi%28n%5E%7B1%2Fk%7D%29%7D%20g%28n%2Fp_%7Bi%7D%2C%20k-1%2C%20i%29%0A%5Cend%7Baligned%7D" alt="\begin{aligned}
+g(n, k, it) = \sum_{i=it}^{\pi(n^{1/k})} g(n/p_{i}, k-1, i)
+\end{aligned}" title="\begin{aligned}
+g(n, k, it) = \sum_{i=it}^{\pi(n^{1/k})} g(n/p_{i}, k-1, i)
+\end{aligned}" /><br />
+<p>The last step, is to see how fast it is possible to find the base case. Since g(n, 2, 1) is just the iterations over the prime numbers less or equal than √{n}, the time complexity is:</p>
+<br /><img style="vertical-align:middle" src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0AO%28g%28n%2C%202%2C%20i%29%29%20%3D%20%5Csum_%7Bp_%7Bi%7D%20%5Cleq%20%5Csqrt%7Bn%7D%7D%20O%28%5Cpi%28n%2Fp_%7Bi%7D%29%29%0A%5Cend%7Baligned%7D" alt="\begin{aligned}
+O(g(n, 2, i)) = \sum_{p_{i} \leq \sqrt{n}} O(\pi(n/p_{i}))
+\end{aligned}" title="\begin{aligned}
+O(g(n, 2, i)) = \sum_{p_{i} \leq \sqrt{n}} O(\pi(n/p_{i}))
+\end{aligned}" /><br />
+<p>It means, the whole time complexity depends about how fast it is possible to calculate 𝜋(n). A simpler method could be using a sieve, however since the values are greater that √{n}, we can’t sieve to the value of n. Other method, is trying to factorize it with the prime numbers less than √{n}. However, this approach can potentially take O(√{n}/log(n)) per number which is too slow.</p>
+<p><strong><em>Meissel-Lehmer</em></strong> is an algorithm which can efficiently calculate 𝜋(n) for big values of n.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>ll g(ll n, <span class="dt">int</span> k, <span class="dt">int</span> it){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>    ll ans = <span class="dv">0</span>;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="cf">for</span>(<span class="dt">int</span> i=it; i&lt;pi(pow(n, <span class="fl">1.</span>/m)); i++){</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>        <span class="cf">if</span>(m == <span class="dv">2</span>) ans += pi(n/primes[i]) - i;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>        <span class="cf">else</span> ans += g(n/primes[i], k-<span class="dv">1</span>, i);</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>    }</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    <span class="cf">return</span> ans;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>}</span></code></pre></div>
+<p>Using my <em>Meissel-Lehmer</em> implementation is enough to solve the problem for 10¹³ in a few minutes. However, for 10¹⁴ it’s having some troubles and it takes hours.</p>
+<h3 id="adding-pre-processing">Adding pre-processing</h3>
+<p>I’ve used Wolfram Mathematica to find the most expensive runnings of my Meissel-Lehmer algorithm, which are the values of:</p>
+<br /><img style="vertical-align:middle" src="https://latex.codecogs.com/png.latex?%5Cdpi{280}%5Cdisplaystyle%20%5Cbegin%7Baligned%7D%0A%5C%7B%5Cpi%2810%5E%7B14%7D%2F1%29%2C%20%5Cpi%2810%5E%7B14%7D%2F2%29%20%5Ccdots%20%5Cpi%2810%5E%7B14%7D%2F%5Csqrt%7B10%5E%7B14%7D%7D%29%5C%7D%0A%5Cend%7Baligned%7D" alt="\begin{aligned}
+\{\pi(10^{14}/1), \pi(10^{14}/2) \cdots \pi(10^{14}/\sqrt{10^{14}})\}
+\end{aligned}" title="\begin{aligned}
+\{\pi(10^{14}/1), \pi(10^{14}/2) \cdots \pi(10^{14}/\sqrt{10^{14}})\}
+\end{aligned}" /><br />
+<pre class="wl"><code>PrimePi[Table[Quotient[10^14, i], {i, 1, 10^7}]]</code></pre>
+<p>I stored it in a <code>.txt</code> file and read it in my <code>c++</code> code just using pipes operators.</p>
+<p>Also, adding some memoization to the recursive formula is useful. Now this solution looks more like a <em>dynamic programming</em> approach:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="pp">#include </span><span class="im">&lt;bits/stdc++.h&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">using</span> <span class="kw">namespace</span> std;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="kw">using</span> ll = <span class="dt">long</span> <span class="dt">long</span>;</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="pp">#define FIFO </span>ios_base::sync_with_stdio(<span class="dv">0</span>);cin.tie(<span class="dv">0</span>);cout.tie(<span class="dv">0</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="pp">#define N </span><span class="dv">100000000000000</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="at">const</span> <span class="dt">long</span> <span class="dt">long</span> limit = <span class="dv">10000005</span>;</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="at">const</span> <span class="dt">long</span> <span class="dt">long</span> cache_limit = <span class="dv">50000000</span>;</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>map &lt;ll, ll&gt; cache[<span class="dv">48</span>][<span class="dv">670000</span>];</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a>map &lt;ll, ll&gt; pi_div;</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>vector &lt;<span class="dt">int</span>&gt; pi_sieve(limit);</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="dt">int</span> ceil_power(ll n, ll m){</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>    <span class="dt">double</span> p = pow(n, <span class="fl">1.0</span>/m);</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>    <span class="dt">int</span> x = floor(p);</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>    <span class="cf">if</span>(pow(x+<span class="dv">1</span>, m) &lt;= n) <span class="cf">return</span> x+<span class="dv">1</span>;</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>    <span class="cf">else</span> <span class="cf">return</span> x;</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>}</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>vector &lt;<span class="dt">int</span>&gt; prime_sieve(){</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>    bitset &lt;limit&gt; sieve;</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>    vector &lt;<span class="dt">int</span>&gt; ans;</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">2</span>; i&lt;limit; i++){</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>        <span class="cf">if</span>(!sieve[i]){</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>            pi_sieve[i] = pi_sieve[i-<span class="dv">1</span>] + <span class="dv">1</span>;</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a>            ans.push_back(i);</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>            <span class="cf">for</span>(ll j=<span class="dv">1</span><span class="bu">LL</span>*i*i; j&lt;limit; j+=i) sieve[j] = <span class="dv">1</span>;</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a>        }</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a>        <span class="cf">else</span> pi_sieve[i] = pi_sieve[i-<span class="dv">1</span>];</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a>    }</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a>    <span class="cf">return</span> ans;</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a>}</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a>vector &lt;<span class="dt">int</span>&gt; primes;</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a>map &lt;pair &lt;ll,ll&gt;, ll&gt; phi_cache;</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a>ll phi(ll x, ll a){</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a>    pair &lt;ll,ll&gt; values = {x,a};</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a>    <span class="cf">if</span>(phi_cache.find(values) != phi_cache.end()) <span class="cf">return</span> phi_cache[values];</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a>    <span class="cf">if</span>(a == <span class="dv">1</span>) <span class="cf">return</span> (x+<span class="dv">1</span>)/<span class="dv">2</span>;</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a>    ll ans = phi(x, a-<span class="dv">1</span>) - phi(x/primes[a-<span class="dv">1</span>], a-<span class="dv">1</span>);</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a>    <span class="cf">if</span>(phi_cache.size() &lt; cache_limit) phi_cache[values] = ans;</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true"></a>    <span class="cf">return</span> ans;</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true"></a>}</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true"></a></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true"></a>map &lt;ll,ll&gt; pi_cache;</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true"></a>ll pi(ll x){</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true"></a>    <span class="cf">if</span>(x &lt; limit) <span class="cf">return</span> pi_sieve[x];</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true"></a>    <span class="cf">if</span>(pi_div.find(x) != pi_div.end()) <span class="cf">return</span> pi_div[x];</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true"></a>    <span class="cf">if</span>(pi_cache.find(x) != pi_cache.end()) <span class="cf">return</span> pi_cache[x];</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true"></a>    <span class="dt">int</span> a = pi((<span class="dt">int</span>)(pow(x,<span class="fl">1.0</span>/<span class="dv">4</span>)));</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true"></a>    <span class="dt">int</span> b = pi((<span class="dt">int</span>)(sqrt(x)));</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true"></a>    <span class="dt">int</span> c = pi((<span class="dt">int</span>)(pow(x,<span class="fl">1.0</span>/<span class="dv">3</span>)));</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true"></a></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true"></a>    ll ans = phi(x,a) + <span class="dv">1</span><span class="bu">LL</span>*(b+a-<span class="dv">2</span>)*(b-a+<span class="dv">1</span>)/<span class="dv">2</span>;</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true"></a>    <span class="cf">for</span>(<span class="dt">int</span> i=a+<span class="dv">1</span>; i&lt;b+<span class="dv">1</span>; i++){</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true"></a>        ll w = x/primes[i-<span class="dv">1</span>];</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true"></a>        ans -= pi(w);</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true"></a>        <span class="cf">if</span>(i &lt;= c){</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true"></a>            ll b_i = pi((<span class="dt">int</span>)(sqrt(w)));</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true"></a>            <span class="cf">for</span>(<span class="dt">int</span> j=i; j&lt;b_i+<span class="dv">1</span>; j++)</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true"></a>                ans = ans - pi(w/primes[j-<span class="dv">1</span>]) + j - <span class="dv">1</span>;</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true"></a>        }</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true"></a>    }</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true"></a>    <span class="cf">if</span>(pi_cache.size() &lt; cache_limit) pi_cache[x] = ans;</span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true"></a>    <span class="cf">return</span> ans;</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true"></a>}</span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true"></a>ll g(ll n, <span class="dt">int</span> k, <span class="dt">int</span> it){</span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true"></a>    ll ans = <span class="dv">0</span>;</span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true"></a>    <span class="cf">if</span>(cache[k][it].find(n) != cache[k][it].end()){</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true"></a>        ans = cache[k][it][n];</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true"></a>        <span class="cf">return</span> ans;</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true"></a>    }</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true"></a>    <span class="cf">for</span>(<span class="dt">int</span> i=it; i&lt;pi(ceil_power(n, k)); i++){</span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true"></a>        <span class="cf">if</span>(m == <span class="dv">2</span>) ans += pi(n/primes[i]) - i;</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true"></a>        <span class="cf">else</span> ans += Pi(n/primes[i], m-<span class="dv">1</span>, i);</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true"></a>    }</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true"></a>    cache[k][it][n] = ans;</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true"></a>    <span class="cf">return</span> ans;</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true"></a>}</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true"></a></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true"></a></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true"></a>ll solve(ll n){</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true"></a>    <span class="dt">int</span> m = log2(n);</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true"></a>    ll ans = <span class="dv">2</span>*pi(n);</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true"></a>    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">2</span>; i&lt;=m; i++){</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true"></a>        ans += g(n, i, <span class="dv">0</span>) * (<span class="dv">1</span><span class="bu">LL</span>&lt;&lt;i);</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true"></a>    }</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true"></a>    <span class="cf">return</span> ans;</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true"></a>}</span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true"></a></span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true"></a></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true"></a><span class="dt">int</span> main(){</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true"></a>    FIFO;</span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true"></a>    primes = prime_sieve();</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true"></a>    ll n = N;</span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true"></a>    <span class="cf">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>; i&lt;<span class="dv">10000000</span>; i++){</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true"></a>        ll x; cin &gt;&gt; x;</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true"></a>        pi_div[N/(i+<span class="dv">1</span>)] = x;</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true"></a>    }</span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true"></a>    cout &lt;&lt; <span class="dv">1</span> + solve(n) &lt;&lt; <span class="ch">&#39;</span><span class="sc">\n</span><span class="ch">&#39;</span>;</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true"></a>}</span></code></pre></div>
+<p>it runs in less than 5 min.</p>
+</body>
+</html>
