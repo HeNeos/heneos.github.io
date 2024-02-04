@@ -5,7 +5,7 @@ if __name__ == "__main__":
     movements = []
     solution = []
     state = -1
-    with open("MultiMovement.txt", "r") as file:
+    with open("BottleSwap.txt", "r") as file:
         lines = file.readlines()
         for line in lines:
             if line.startswith("SOLUTION"):
