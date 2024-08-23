@@ -13,7 +13,7 @@ jobs:
         run: |
           gem install bundler  # Ensure bundler is installed
           bundle install        # Install dependencies from Gemfile
-          bundle exec appraisal install  # Install appraisal gemfiles (if using appraisal)
+          # bundle exec appraisal install  # Install appraisal gemfiles (if using appraisal)
       - name: Build site
         run: |
           bundle exec jekyll build --future  # Build the Jekyll site (without appraisal unless necessary)
