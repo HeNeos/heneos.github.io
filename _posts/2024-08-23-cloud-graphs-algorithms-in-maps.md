@@ -24,7 +24,7 @@ and there are a lot of more questions that you can have and can be answered with
 
 However, at this point let's focus only on the third one, which in some sense also involves the number 1 and 2.
 
-So, the obvious question here is, **how?**. Unless, you've never took a class from algorithms, you already know the famous `Dijkstra algorithm`, which is used to find shortest path in graphs ~with some limitations~.
+So, the obvious question here is, **how?**. Unless, you've never took a class from algorithms, you already know the famous `Dijkstra algorithm`, which is used to find shortest path in graphs ~~with some limitations~~.
 
 I'm not going to explain how Dijkstra algorithm works because it's really easy to find info about it on internet, instead I'm going to focus on how to build the application.
 

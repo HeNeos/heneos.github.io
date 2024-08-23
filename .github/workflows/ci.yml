@@ -8,8 +8,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: '3.3'  # Ensure your gems support Ruby 3.3
       - name: Install dependencies
-        run: bundle install && bundle exec appraisal install
+        run: |
+          gem install bundler  # Ensure bundler is installed
+          bundle install        # Install dependencies from Gemfile
+          bundle exec appraisal install  # Install appraisal gemfiles (if using appraisal)
       - name: Build site
-        run: bundle exec appraisal jekyll build --future
+        run: |
+          bundle exec jekyll build --future  # Build the Jekyll site (without appraisal unless necessary)
+
